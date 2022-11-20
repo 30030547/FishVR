@@ -12,6 +12,7 @@ public class RigidBody : MonoBehaviour
     private bool isJumping;
     private float moveHorizontal;
     private float moveVertical;
+    private bool facingRight = true;
 
 
 
@@ -35,6 +36,14 @@ public class RigidBody : MonoBehaviour
         // We say that moveVertical will grab input from W and S or arrow keys Up or Down.
         moveVertical = Input.GetAxisRaw("Vertical");
         
+        if (moveHorizontal < 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveHorizontal > 0 && facingRight)
+        {
+            Flip();
+        }
     }
 
     // Because we are using physics we will use the fixed update function.
@@ -56,4 +65,14 @@ public class RigidBody : MonoBehaviour
         }
     }
 
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector2 currentScale = transform.localScale;
+        currentScale.x *= -1;
+
+        transform.localScale = currentScale;
+
+    }
 }
