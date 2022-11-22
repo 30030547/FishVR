@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = GameObject.Find("Canvas").GetComponent<ScoreManager>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Destroy(gameObject);   
+            scoreManager.score += 1f;
+            Destroy(gameObject);
         }
     }
 }
