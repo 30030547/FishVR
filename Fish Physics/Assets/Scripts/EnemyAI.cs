@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
 {
     // Variables.
     public Transform target;
-
     // AI Speed.
     public float speed = 400f;
     // Store our next waypoint distance.
@@ -99,4 +98,5 @@ public class EnemyAI : MonoBehaviour
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
         }
     }
+    
 }
