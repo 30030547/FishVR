@@ -6,7 +6,13 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public TMP_Text textscore;
+    public TMP_Text gameOverText;
     public float score;
+
+    public void gameOver()
+    {
+        gameOverText.text = "Game Over!";
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +23,8 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textscore.text ="Fish Food: " + score.ToString();
+        textscore.text = "Fish Food: " + score.ToString();
     }
+
+    
 }

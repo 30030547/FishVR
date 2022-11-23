@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RigidBody : MonoBehaviour
 {
     private Rigidbody2D rb2D;
+    private ScoreManager scoreManager;
 
     //Fields
+    
     private float moveSpeed;
     private float jumpForce;
     private bool isJumping;
@@ -19,6 +22,7 @@ public class RigidBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreManager = GameObject.Find("Canvas").GetComponent<ScoreManager>();
         //gameObject references the game object it's attached to. We then grab the component in this case it is the Rigidbody2D component.
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         moveSpeed = 0.3f;
@@ -75,4 +79,13 @@ public class RigidBody : MonoBehaviour
         transform.localScale = currentScale;
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            scoreManager.gameOver();
+        }
+    }
+
 }
